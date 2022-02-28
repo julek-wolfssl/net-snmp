@@ -121,12 +121,18 @@ static bio_cache *biocache = NULL;
 
 static int openssl_addr_index = 0;
 
+#ifndef SECOND_APPVERIFY_COOKIE_CB_ARG_QUALIFIER
+#define SECOND_APPVERIFY_COOKIE_CB_ARG_QUALIFIER
+#endif
+#ifndef NETSNMP_USE_WOLFSSL
+/* no cookie callbacks in wolfSSL */
 static int netsnmp_dtls_verify_cookie(SSL *ssl,
                                       SECOND_APPVERIFY_COOKIE_CB_ARG_QUALIFIER
                                       unsigned char *cookie,
                                       unsigned int cookie_len);
 static int netsnmp_dtls_gen_cookie(SSL *ssl, unsigned char *cookie,
                                    unsigned int *cookie_len);
+#endif
 
 /* this stores remote connections in a list to search through */
 /* XXX: optimize for searching */
@@ -337,10 +343,12 @@ start_new_cached_connection(netsnmp_transport *t,
             DIEHERE("failed to create the SSL Context");
         }
 
+#ifndef NETSNMP_USE_WOLFSSL
         /* turn on cookie exchange */
         /* Set DTLS cookie generation and verification callbacks */
         SSL_CTX_set_cookie_generate_cb(ctx, netsnmp_dtls_gen_cookie);
         SSL_CTX_set_cookie_verify_cb(ctx, netsnmp_dtls_verify_cookie);
+#endif
 
         tlsdata->ssl = SSL_new(ctx);
     }
@@ -1692,6 +1700,7 @@ netsnmp_dtlsudp_ctor(void)
 int cookie_initialized=0;
 unsigned char cookie_secret[NETSNMP_COOKIE_SECRET_LENGTH];
 
+#ifndef NETSNMP_USE_WOLFSSL
 int netsnmp_dtls_gen_cookie(SSL *ssl, unsigned char *cookie,
                             unsigned int *cookie_len)
 {
@@ -1873,5 +1882,6 @@ int netsnmp_dtls_verify_cookie(SSL *ssl,
 
     return rc;
 }
+#endif
 
 #endif /* HAVE_LIBSSL_DTLS */

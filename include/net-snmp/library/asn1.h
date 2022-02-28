@@ -3,6 +3,10 @@
 
 #include <net-snmp/library/oid.h>
 
+#ifdef NETSNMP_USE_WOLFSSL
+#include <wolfssl/wolfcrypt/asn.h>
+#endif
+
 #ifdef __cplusplus
 extern          "C" {
 #endif
@@ -51,18 +55,23 @@ SOFTWARE.
 
 #define OID_LENGTH(x)  (sizeof(x)/sizeof(oid))
 
-
+#ifndef NETSNMP_USE_WOLFSSL
 #define ASN_BOOLEAN	    0x01U
 #define ASN_INTEGER	    0x02U
+#endif
 #define ASN_BIT_STR	    0x03U
 #define ASN_OCTET_STR	    0x04U
 #define ASN_NULL	    0x05U
+#ifndef NETSNMP_USE_WOLFSSL
 #define ASN_OBJECT_ID	    0x06U
 #define ASN_SEQUENCE	    0x10U
 #define ASN_SET		    0x11U
+#endif
 
 #define ASN_UNIVERSAL	    0x00U
+#ifndef NETSNMP_USE_WOLFSSL
 #define ASN_APPLICATION     0x40U
+#endif
 #define ASN_CONTEXT	    0x80U
 #define ASN_PRIVATE	    0xC0U
 

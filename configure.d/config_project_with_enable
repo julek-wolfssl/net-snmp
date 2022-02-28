@@ -72,14 +72,40 @@ NETSNMP_ARG_WITH(rsaref,
     fi,
 )
 
-tryopenssl=defaultyes
+trywolfssl=no
+wolfpath="/usr/local"
+NETSNMP_ARG_WITH(wolfssl,
+[  --with-wolfssl=PATH             Look for wolfssl in PATH/lib.],
+    if test "x$withval" = "xyes"; then
+      trywolfssl=yes
+    else
+      trywolfssl=yes
+      wolfpath=$withval
+    fi,
+)
+if test "x$trywolfssl" = "xyes"; then
+	  if test -d $wolfpath/lib && test -d $wolfpath/include/wolfssl ; then
+        LDFLAGS="-L$wolfpath/lib $LDFLAGS"
+        CPPFLAGS="-I$wolfpath/include -I$wolfpath/include/wolfssl -DEXTERNAL_OPTS_OPENVPN $CPPFLAGS"
+	  else
+	    AC_MSG_ERROR([Cannot find wolfSSL in $wolfpath.])
+	  fi
+fi
+
+if test "x$trywolfssl" = "xyes"; then
+      tryopenssl=no
+else
+      tryopenssl=defaultyes
+fi
 askedopenssl=no
 aes_capable=no
 NETSNMP_ARG_WITH(openssl,
 [  --with-openssl=PATH             Look for openssl in PATH/lib,
                                   or PATH may be "internal" to build with
                                   minimal copied OpenSSL code for USM only.],
-    if test "x$withval" = "xyes"; then
+    if test "x$trywolfssl" = "xyes"; then
+	  AC_MSG_ERROR([Cannot specify both OpenSSL and wolfSSL])
+    elif test "x$withval" = "xyes"; then
       tryopenssl=yes
       askedopenssl=yes
     elif test "x$withval" = "xinternal"; then

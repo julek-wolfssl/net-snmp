@@ -2,10 +2,10 @@
 
 #if defined(NETSNMP_USE_OPENSSL) && defined(HAVE_LIBSSL)
 
-#ifndef HEADER_SSL_H
+#if !(defined(HEADER_SSL_H) || defined(WOLFSSL_OPENSSL_H_))
 #error "must include <openssl/ssl.h> before cert_util.h"
 #endif
-#ifndef HEADER_X509_H
+#if !(defined(HEADER_X509_H) || defined(WOLFSSL_OPENSSL_509_H_))
 #error "must include <openssl/x509.h> before cert_util.h"
 #endif
 

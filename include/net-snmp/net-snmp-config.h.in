@@ -77,7 +77,7 @@
 /* location of mount table list */
 #undef ETC_MNTTAB
 
-/* Define to 1 if you have the `AES_cfb128_encrypt' function. */
+/* Defined as macro in wolfSSL */
 #undef HAVE_AES_CFB128_ENCRYPT
 
 /* Define to 1 if you have `alloca', as a function or macro. */
@@ -96,7 +96,7 @@
 /* Define to 1 if you have the <asm/types.h> header file. */
 #undef HAVE_ASM_TYPES_H
 
-/* Define to 1 if you have the `ASN1_STRING_get0_data' function. */
+/* Defined as macro in wolfSSL */
 #undef HAVE_ASN1_STRING_GET0_DATA
 
 /* Define to 1 if you have the `asprintf' function. */
@@ -147,13 +147,13 @@
 /* define if you have devstat_getdevs() */
 #undef HAVE_DEVSTAT_GETDEVS
 
-/* Define to 1 if you have the `DH_get0_key' function. */
+/* Defined as macro in wolfSSL */
 #undef HAVE_DH_GET0_KEY
 
-/* Define to 1 if you have the `DH_get0_pqg' function. */
+/* Defined as macro in wolfSSL */
 #undef HAVE_DH_GET0_PQG
 
-/* Define to 1 if you have the `DH_set0_pqg' function. */
+/* Defined as macro in wolfSSL */
 #undef HAVE_DH_SET0_PQG
 
 /* Define to 1 if you have the <dirent.h> header file, and it defines `DIR'.
@@ -169,10 +169,10 @@
 /* Set if the dpkg-query command is available */
 #undef HAVE_DPKG_QUERY
 
-/* Define to 1 if you have the `DTLSv1_method' function. */
+/* Defined as macro in wolfSSL */
 #undef HAVE_DTLSV1_METHOD
 
-/* Define to 1 if you have the `DTLS_method' function. */
+/* Defined as macro in wolfSSL */
 #undef HAVE_DTLS_METHOD
 
 /* Define to 1 if you have the `endfsent' function. */
@@ -190,22 +190,22 @@
 /* Define to 1 if you have the `eval_pv' function. */
 #undef HAVE_EVAL_PV
 
-/* Define to 1 if you have the `EVP_MD_CTX_create' function. */
+/* Defined as macro in wolfSSL */
 #undef HAVE_EVP_MD_CTX_CREATE
 
-/* Define to 1 if you have the `EVP_MD_CTX_destroy' function. */
+/* Defined as macro in wolfSSL */
 #undef HAVE_EVP_MD_CTX_DESTROY
 
-/* Define to 1 if you have the `EVP_MD_CTX_free' function. */
+/* Defined as macro in wolfSSL */
 #undef HAVE_EVP_MD_CTX_FREE
 
-/* Define to 1 if you have the `EVP_MD_CTX_new' function. */
+/* Defined as macro in wolfSSL */
 #undef HAVE_EVP_MD_CTX_NEW
 
-/* Define to 1 if you have the `EVP_sha224' function. */
+/* Defined as macro in wolfSSL */
 #undef HAVE_EVP_SHA224
 
-/* Define to 1 if you have the `EVP_sha384' function. */
+/* Defined as macro in wolfSSL */
 #undef HAVE_EVP_SHA384
 
 /* Define to 1 if you have the `execv' function. */
@@ -454,10 +454,10 @@
 /* Define to 1 if you have the `ssh2' library (-lssh2). */
 #undef HAVE_LIBSSH2
 
-/* Define to 1 if you have the `ssl' library (-lssl). */
+/* wolfSSL supports SSL/TLS */
 #undef HAVE_LIBSSL
 
-/* Define to 1 if your `ssl' library supports DTLS (-lssl). */
+/* wolfSSL supports DTLS */
 #undef HAVE_LIBSSL_DTLS
 
 /* Define to 1 if you have the <limits.h> header file. */
@@ -896,10 +896,10 @@
 /* Define to 1 if the system has the type `ssize_t'. */
 #undef HAVE_SSIZE_T
 
-/* Define to 1 if you have the `SSL_library_init' function. */
+/* Defined as macro in wolfSSL */
 #undef HAVE_SSL_LIBRARY_INIT
 
-/* Define to 1 if you have the `SSL_load_error_strings' function. */
+/* Defined as macro in wolfSSL */
 #undef HAVE_SSL_LOAD_ERROR_STRINGS
 
 /* Define to 1 if you have the `statfs' function. */
@@ -1376,10 +1376,10 @@
 /* Define to 1 if you have the `times' function. */
 #undef HAVE_TIMES
 
-/* Define to 1 if you have the `TLSv1_method' function. */
+/* Defined as macro in wolfSSL */
 #undef HAVE_TLSV1_METHOD
 
-/* Define to 1 if you have the `TLS_method' function. */
+/* Defined as macro in wolfSSL */
 #undef HAVE_TLS_METHOD
 
 /* Define to 1 if you have the <ufs/ffs/fs.h> header file. */
@@ -1472,13 +1472,13 @@
 /* Define to 1 if you have the <ws2tcpip.h> header file. */
 #undef HAVE_WS2TCPIP_H
 
-/* Define to 1 if you have the `X509_get_signature_nid' function. */
+/* Defined as macro in wolfSSL */
 #undef HAVE_X509_GET_SIGNATURE_NID
 
-/* Define to 1 if you have the `X509_NAME_ENTRY_get_data' function. */
+/* Defined as macro in wolfSSL */
 #undef HAVE_X509_NAME_ENTRY_GET_DATA
 
-/* Define to 1 if you have the `X509_NAME_ENTRY_get_object' function. */
+/* Defined as macro in wolfSSL */
 #undef HAVE_X509_NAME_ENTRY_GET_OBJECT
 
 /* Define to 1 if you have the <xti.h> header file. */
@@ -1677,6 +1677,9 @@
 
 /* Define this if you have lm_sensors v3 or later */
 #undef NETSNMP_USE_SENSORS_V3
+
+/* Use wolfSSL */
+#undef NETSNMP_USE_WOLFSSL
 
 /* Should we compile to use special opaque types: float, double, counter64,
    i64, ui64, union? */

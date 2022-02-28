@@ -45,6 +45,7 @@ netsnmp_feature_child_of(tls_fingerprint_build, cert_util_all);
 #if HAVE_STDLIB_H
 #include <stdlib.h>
 #endif
+#include <stddef.h>
 
 #if HAVE_STRING_H
 #include <string.h>
@@ -87,6 +88,7 @@ netsnmp_feature_child_of(tls_fingerprint_build, cert_util_all);
 #include <net-snmp/library/read_config.h>
 
 #include <openssl/ssl.h>
+#include <openssl/pem.h>
 #include <openssl/err.h>
 #include <openssl/x509v3.h>
 #include <net-snmp/library/cert_util.h>

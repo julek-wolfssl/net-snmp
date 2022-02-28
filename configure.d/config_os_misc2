@@ -72,6 +72,13 @@ elif test "x$useopenssl" != "xno" ; then
     AC_DEFINE(NETSNMP_USE_OPENSSL)
     LNETSNMPLIBS="$LNETSNMPLIBS $LIBCRYPTO"
     AC_MSG_RESULT(OpenSSL Support)
+elif test "x$trywolfssl" != "xno"; then
+    authmodes="MD5 SHA1 SHA224 SHA256 SHA384 SHA512"
+    encrmodes="DES AES"
+    AC_DEFINE(NETSNMP_USE_OPENSSL)
+    AC_DEFINE(NETSNMP_USE_WOLFSSL, 1, [Use wolfSSL])
+    LNETSNMPLIBS="$LNETSNMPLIBS $LIBCRYPTO"
+    AC_MSG_RESULT(wolfSSL Support)
 elif test "x$usepkcs" != "xno" ; then
     authmodes="MD5 SHA1"
     if test "x$enable_privacy" != "xno" ; then
